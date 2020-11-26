@@ -25,13 +25,15 @@ const CollectionPage = ({ match }) => {
     };
 
     fetchCollectionItems();
+    console.log("Collection Items:");
+    console.log(collectionItems);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Fragment>
-      {console.log(collectionItems)}
+      <h1>Collection Page</h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (

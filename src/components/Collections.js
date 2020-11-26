@@ -26,13 +26,15 @@ const Collections = () => {
     };
 
     fetchCollections();
+    console.log("Collections:");
+    console.log(collections);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Fragment>
-      {console.log(collections)}
+      <h1>Collections</h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
