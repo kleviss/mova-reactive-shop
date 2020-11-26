@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -43,12 +44,14 @@ const Collections = () => {
         <div>
           {" "}
           {collections.map((tile) => (
-            <Link
-              key={tile.displayName}
-              to={`/collection/${tile.collectionId}`}
-            >
-              <h4>{tile.displayName}</h4>
-            </Link>
+            <Paper>
+              <Link
+                key={tile.displayName}
+                to={`/collection/${tile.collectionId}`}
+              >
+                <h4>{tile.displayName}</h4>
+              </Link>
+            </Paper>
           ))}
         </div>
       )}
