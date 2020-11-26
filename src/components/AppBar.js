@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -116,14 +117,16 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <Typography
-            className={classes.title}
-            variant="h5"
-            noWrap
-            style={{ fontWeight: "900" }}
-          >
-            MOVA
-          </Typography>
+          <Link to="/">
+            <Typography
+              className={classes.title}
+              variant="h5"
+              noWrap
+              style={{ fontWeight: "900", color: "white" }}
+            >
+              MOVA
+            </Typography>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show new items" color="inherit">
