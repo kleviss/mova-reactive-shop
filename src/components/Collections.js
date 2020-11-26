@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Collections = () => {
@@ -40,7 +41,12 @@ const Collections = () => {
         <div>
           {" "}
           {collections.map((tile) => (
-            <h4>{tile.displayName}</h4>
+            <Link
+              key={tile.displayName}
+              to={`/collection/${tile.collectionId}`}
+            >
+              <h4>{tile.displayName}</h4>
+            </Link>
           ))}
         </div>
       )}
