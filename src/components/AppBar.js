@@ -24,11 +24,12 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/">
-            <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
+            <Link to="/" style={{ fontWeight: "900", color: "white" }}>
               MOVA
-            </Typography>
-          </Link>
+            </Link>
+          </Typography>
+
           <IconButton aria-label="show new items" color="inherit">
             <Badge badgeContent={2} color="secondary">
               <ShoppingCartIcon />
