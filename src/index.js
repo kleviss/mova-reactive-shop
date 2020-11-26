@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './components/App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles/index.css";
+import { AppContextProvider } from "./context.js";
+import App from "./components/App";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <AppContextProvider>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </AppContextProvider>,
+  document.getElementById("root")
 );
