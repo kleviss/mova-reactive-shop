@@ -1,8 +1,21 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import CategoryItem from "./CategoryItem";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginLeft: "1rem",
+    marginRight: "1rem",
+  },
+}));
+
 const Categories = () => {
+  const classes = useStyles();
+
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -23,37 +36,38 @@ const Categories = () => {
       }
 
       setIsLoading(false);
-      
+
       console.log("Categories:");
       console.log(categories);
     };
 
     fetchCategories();
-    
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Fragment>
-      <h1>Categories</h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
         <div>Getting your favorite apparel...</div>
       ) : (
-        <div>
-          {" "}
-          {categories.map((category) => (
-            <Link
-              key={category.displayName}
-              to={`/category/${category.categoryId}`}
-            >
-              <h4>{category.displayName}</h4>
-            </Link>
-          ))}
+        <div className={classes.root}>
+          <h1>Categories</h1>
+          <Grid container spacing={2}>
+            {categories.map((category) => (
+              <CategoryItem
+                name={category.displayName}
+                catId={category.categoryId}
+                pId={category.parentId}
+              />
+            ))}
+          </Grid>
         </div>
       )}
+
+      
     </Fragment>
   );
 };

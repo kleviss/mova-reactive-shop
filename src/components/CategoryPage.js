@@ -7,7 +7,11 @@ const CategoryPage = ({ match }) => {
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
-  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?category=${match.params.id}&tag=sports`;
+  console.log(match);
+  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?
+  category=${match.params.id}`;
+
+  console.log(url);
 
   useEffect(() => {
     const fetchCategoryItems = async () => {
@@ -17,10 +21,9 @@ const CategoryPage = ({ match }) => {
 
       try {
         const result = await axios(url);
-
-        if (result.data.length === 0) setIsEmpty(true);
-
         setCategoryItems(result.data);
+        console.log(url);
+        console.log(result.data);
       } catch (error) {
         setIsError(true);
       }
@@ -37,7 +40,7 @@ const CategoryPage = ({ match }) => {
 
   return (
     <Fragment>
-      <h1>Category Page</h1>
+      <h1>Category: {match.params.id}</h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
       {isEmpty && <div>No items at the moment ... Check back next year :p</div>}
 
@@ -45,7 +48,6 @@ const CategoryPage = ({ match }) => {
         <div>Getting your favorite apparel...</div>
       ) : (
         <div>
-          {" "}
           {categoryItems.map((item) => (
             <Fragment key={item.itemId}>
               <h4>{item.displayName}</h4>
