@@ -33,7 +33,7 @@ const CollectionItem = ({ name, id }) => {
 
   return (
     <Fragment>
-      <Grid item xs={6} sm={3} md={3} lg={2}>
+      <Grid item xs={6} sm={4} md={2} lg={2}>
         <Card className={classes.root}>
           <CardActionArea>
             <Link
@@ -60,7 +60,7 @@ const CollectionItem = ({ name, id }) => {
         </Card>
       </Grid>
 
-      <Grid item xs={6} sm={3} md={3} lg={2}>
+      <Grid item xs={6} sm={4} md={2} lg={2}>
         <Card className={classes.root}>
           <CardActionArea>
             <Link
@@ -86,7 +86,7 @@ const CollectionItem = ({ name, id }) => {
           </CardActionArea>
         </Card>
       </Grid>
-      <Grid item xs={6} sm={3} md={3} lg={2}>
+      <Grid item xs={6} sm={4} md={2} lg={2}>
         <Card className={classes.root}>
           <CardActionArea>
             <Link
@@ -112,7 +112,7 @@ const CollectionItem = ({ name, id }) => {
           </CardActionArea>
         </Card>
       </Grid>
-      <Grid item xs={6} sm={3} md={3} lg={2}>
+      <Grid item xs={6} sm={4} md={2} lg={2}>
         <Card className={classes.root}>
           <CardActionArea>
             <Link
@@ -139,7 +139,7 @@ const CollectionItem = ({ name, id }) => {
         </Card>
       </Grid>
 
-      <Grid item xs={6} sm={3} md={3} lg={2}>
+      <Grid item xs={6} sm={4} md={2} lg={2}>
         <Card className={classes.root}>
           <CardActionArea>
             <Link

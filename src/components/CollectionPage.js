@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import "../styles/App.css";
 import axios from "axios";
 
 const CollectionPage = ({ match }) => {
@@ -33,7 +34,9 @@ const CollectionPage = ({ match }) => {
 
   return (
     <Fragment>
-      <h1>Collection Page</h1>
+      <h1>
+        {match.params.id} Collection
+      </h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
