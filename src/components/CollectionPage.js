@@ -34,9 +34,7 @@ const CollectionPage = ({ match }) => {
 
   return (
     <Fragment>
-      <h1>
-        {match.params.id} Collection
-      </h1>
+      <h1>Collection: {match.params.id}</h1>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
