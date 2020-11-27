@@ -12,8 +12,8 @@ export default function App() {
         <AppBar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/collection/:id" component={CollectionPage} />
-          <Route path="/category/:id" component={CategoryPage} />
+          <Route path="/collection/:id" exact component={CollectionPage} />
+          <Route path="/category/:id" exact component={CategoryPage} />
         </Switch>
       </React.Fragment>
     </Router>
