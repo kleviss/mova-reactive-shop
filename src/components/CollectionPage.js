@@ -45,7 +45,11 @@ const CollectionPage = ({ match }) => {
             <Fragment key={item.itemId}>
               <h4>{item.displayName}</h4>
               <p>{item.description}</p>
-              <img alt={item.displayName} src={item.picture} />
+              <img
+                alt={item.displayName}
+                src={item.picture}
+                style={{ width: "200px" }}
+              />
             </Fragment>
           ))}
         </div>
