@@ -1,10 +1,21 @@
 import React, { Fragment, useState, useEffect } from "react";
 import CollectionItem from "./CollectionItem";
-import Paper from "@material-ui/core/Paper";
-import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginLeft: "1rem",
+    marginRight: "1rem",
+  },
+}));
+
 const Collections = () => {
+  const classes = useStyles();
+
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -35,25 +46,19 @@ const Collections = () => {
   }, []);
 
   return (
-    <Fragment>
-      <h1>Collections</h1>
+    <Fragment className={classes.root}>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
         <div>Getting your favorite apparel...</div>
       ) : (
-        <div>
-          {" "}
-          {collections.map((tile) => (
-            
-              <Link
-                key={tile.displayName}
-                to={`/collection/${tile.collectionId}`}
-              >
-                <CollectionItem name={tile.displayName}/>
-              </Link>
-            
-          ))}
+        <div className={classes.root}>
+          <h1>Collections</h1>
+          <Grid container spacing={2}>
+            {collections.map((tile) => (
+              <CollectionItem name={tile.displayName} id={tile.collectionId} />
+            ))}
+          </Grid>
         </div>
       )}
     </Fragment>
