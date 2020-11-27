@@ -7,11 +7,7 @@ const CategoryPage = ({ match }) => {
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
-  console.log(match);
-  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?
-  category=${match.params.id}`;
-
-  console.log(url);
+  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?category=${match.params.id}&tag=sports`;
 
   useEffect(() => {
     const fetchCategoryItems = async () => {
@@ -21,9 +17,10 @@ const CategoryPage = ({ match }) => {
 
       try {
         const result = await axios(url);
+
+        if (result.data.length === 0) setIsEmpty(true);
+
         setCategoryItems(result.data);
-        console.log(url);
-        console.log(result.data);
       } catch (error) {
         setIsError(true);
       }
@@ -48,11 +45,16 @@ const CategoryPage = ({ match }) => {
         <div>Getting your favorite apparel...</div>
       ) : (
         <div>
+          {" "}
           {categoryItems.map((item) => (
             <Fragment key={item.itemId}>
               <h4>{item.displayName}</h4>
               <p>{item.description}</p>
-              <img alt={item.displayName} src={item.picture} />
+              <img
+                alt={item.displayName}
+                src={item.picture}
+                style={{ width: "500px" }}
+              />
             </Fragment>
           ))}
         </div>
