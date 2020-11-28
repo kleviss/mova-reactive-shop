@@ -46,7 +46,7 @@ const Collections = () => {
   }, []);
 
   return (
-    <Fragment className={classes.root}>
+    <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
