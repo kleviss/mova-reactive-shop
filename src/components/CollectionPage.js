@@ -1,8 +1,37 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "../styles/App.css";
 import axios from "axios";
+import ProductItem from "./ProductItem";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop: "1rem",
+    marginLeft: "1rem",
+    marginRight: "1rem",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+  rootProduct: {
+    flexGrow: 1,
+    margin: "1%",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+  tagItem: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "left",
+  },
+}));
 
 const CollectionPage = ({ match }) => {
+  const classes = useStyles();
+
   const [collectionItems, setCollectionItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -26,8 +55,6 @@ const CollectionPage = ({ match }) => {
     };
 
     fetchCollectionItems();
-    console.log("Collection Items:");
-    console.log(collectionItems);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,17 +69,18 @@ const CollectionPage = ({ match }) => {
       ) : (
         <div>
           {" "}
-          {collectionItems.map((item) => (
-            <Fragment key={item.itemId}>
-              <h4>{item.displayName}</h4>
-              <p>{item.description}</p>
-              <img
-                alt={item.displayName}
-                src={item.picture}
-                style={{ width: "200px" }}
+          <Grid className={classes.tagItem} container spacing={1}>
+            {collectionItems.map((item) => (
+              <ProductItem
+                name={item.displayName}
+                description={item.description}
+                price={item.originalPrice}
+                image={item.picture}
+                id={item.itemId}
+                catId={item.categoryId}
               />
-            </Fragment>
-          ))}
+            ))}
+          </Grid>
         </div>
       )}
     </Fragment>
