@@ -58,34 +58,30 @@ const ProductList = () => {
     const fetchTags = async () => {
       try {
         const result = await axios(tags_url);
-        console.log();
         setTags(result.data);
       } catch (error) {
         setIsError(true);
       }
     };
     fetchTags();
-  }, [tags_url]);
+  }, []);
 
   return (
     <Fragment>
-      {isError && <div>Something went wrong ... Please reload the page</div>}
+      <div className={classes.root}>
+        <h1>Tags</h1>
+        <Grid className={classes.tagItem} container spacing={1}>
+          {tags.map((tag) => (
+            <TagItem name={tag.tag} handleClick={handleClick} />
+          ))}
+        </Grid>
+      </div>
 
       {isLoading ? (
-        <div>Getting products...</div>
-      ) : (
         <div className={classes.root}>
-          <h1>Tags</h1>
-          <Grid className={classes.tagItem} container spacing={1}>
-            {tags.map((tag) => (
-              <TagItem name={tag.tag} handleClick={handleClick} />
-            ))}
-          </Grid>
+          <h1>Products</h1>
+          <div>Getting products...</div>
         </div>
-      )}
-
-      {isLoading ? (
-        <div>Getting products...</div>
       ) : (
         <div className={classes.root}>
           <h1>Products</h1>
