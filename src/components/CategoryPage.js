@@ -58,8 +58,7 @@ const CategoryPage = ({ match }) => {
     };
 
     fetchCategoryItems();
-    console.log("Category Items:");
-    console.log(categoryItems);
+  
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
