@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import TagItem from "./TagItem.js";
+import ProductItem from "./ProductItem.js";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
@@ -68,6 +69,8 @@ const ProductList = () => {
 
   return (
     <Fragment>
+      {isError && <div>Something went wrong ... Please reload the page</div>}
+
       <div className={classes.root}>
         <h1>Tags</h1>
         <Grid className={classes.tagItem} container spacing={1}>
@@ -88,7 +91,7 @@ const ProductList = () => {
           <Grid container spacing={2}>
             {products.map((product) => (
               <Grid item xs sm={3} md={2} lg={1} key={product.displayName}>
-                <button>{product.displayName}</button>
+                <ProductItem />
               </Grid>
             ))}
           </Grid>
