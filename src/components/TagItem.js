@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TagItem = ({ name }) => {
+const TagItem = ({ name, handleClick}) => {
   const classes = useStyles();
 
   return (
@@ -33,7 +33,8 @@ const TagItem = ({ name }) => {
           label="All Products"
           clickable
           color="secondary"
-          
+          onClick={(event) => handleClick("")}
+          value=""
         />
       </Grid>
 
@@ -44,7 +45,8 @@ const TagItem = ({ name }) => {
           label={name}
           clickable
           color="primary"
-          
+          onClick={(event) => handleClick(name)}
+          value={name}
         />
       </Grid>
       <Grid item xs={5} sm={3} md={2} lg={1}>
@@ -54,7 +56,8 @@ const TagItem = ({ name }) => {
           label="onThatAss"
           clickable
           color="primary"
-          
+          onClick={(event) => handleClick("onThatAss")}
+          value="onThatAss"
         />
       </Grid>
     </Fragment>
