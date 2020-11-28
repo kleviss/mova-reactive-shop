@@ -1,7 +1,36 @@
 import React, { Fragment, useState, useEffect } from "react";
+import ProductItem from "./ProductItem";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    marginTop: "1rem",
+    marginLeft: "1rem",
+    marginRight: "1rem",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+  rootProduct: {
+    flexGrow: 1,
+    margin: "1%",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+  tagItem: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "left",
+  },
+}));
 
 const CategoryPage = ({ match }) => {
+  const classes = useStyles();
+
   const [categoryItems, setCategoryItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -46,17 +75,18 @@ const CategoryPage = ({ match }) => {
       ) : (
         <div>
           {" "}
-          {categoryItems.map((item) => (
-            <Fragment key={item.itemId}>
-              <h4>{item.displayName}</h4>
-              <p>{item.description}</p>
-              <img
-                alt={item.displayName}
-                src={item.picture}
-                style={{ width: "500px" }}
+          <Grid className={classes.tagItem} container spacing={1}>
+            {categoryItems.map((item) => (
+              <ProductItem
+                name={item.displayName}
+                description={item.description}
+                price={item.originalPrice}
+                image={item.picture}
+                id={item.itemId}
+                catId={item.categoryId}
               />
-            </Fragment>
-          ))}
+            ))}
+          </Grid>
         </div>
       )}
     </Fragment>
