@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.5),
     },
   },
+  rootProduct: {
+    flexGrow: 1,
+    margin: "1%",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
   tagItem: {
     display: "flex",
     alignItems: "center",
@@ -65,7 +72,7 @@ const ProductList = () => {
       }
     };
     fetchTags();
-  }, []);
+  }, [tags_url]);
 
   return (
     <Fragment>
@@ -86,13 +93,18 @@ const ProductList = () => {
           <div>Getting products...</div>
         </div>
       ) : (
-        <div className={classes.root}>
+        <div className={classes.rootProduct}>
           <h1>Products</h1>
-          <Grid container spacing={2}>
+          <Grid className={classes.tagItem} container spacing={1}>
             {products.map((product) => (
-              <Grid item xs sm={3} md={2} lg={1} key={product.displayName}>
-                <ProductItem />
-              </Grid>
+              <ProductItem
+                name={product.displayName}
+                description={product.description}
+                price={product.currentPrice}
+                image={product.picture}
+                id={product.itemId}
+                catId={product.categoryId}
+              />
             ))}
           </Grid>
         </div>
