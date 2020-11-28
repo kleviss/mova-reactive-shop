@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TagItem = ({ name, handleClick}) => {
+const TagItem = ({ name, handleClick }) => {
   const classes = useStyles();
 
   return (

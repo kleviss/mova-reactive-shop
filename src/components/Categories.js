@@ -38,16 +38,11 @@ const Categories = () => {
 
       try {
         const result = await axios(url);
-
         setCategories(result.data);
       } catch (error) {
         setIsError(true);
       }
-
       setIsLoading(false);
-
-      console.log("Categories:");
-      console.log(categories);
     };
 
     fetchCategories();

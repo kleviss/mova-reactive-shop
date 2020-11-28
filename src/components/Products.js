@@ -2,10 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import TagItem from "./TagItem.js";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import Chip from "@material-ui/core/Chip";
-import FaceIcon from "@material-ui/icons/Face";
-import DoneIcon from "@material-ui/icons/Done";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,8 +31,6 @@ const ProductList = () => {
   const [isError, setIsError] = useState(false);
 
   const products_url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?tag=${tagValue}`;
-  console.log("Product Url initial");
-  console.log(products_url);
   const tags_url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/tags`;
 
   const handleClick = (val) => {
@@ -44,45 +38,34 @@ const ProductList = () => {
     setTagValue(val);
   };
 
-  const handleDelete = (tagValue) => {
-    console.info(`You have clicked ${tagValue} from TagItem component`);
-  };
-
-  const fetchProducts = async () => {
-    setIsError(false);
-    setIsLoading(true);
-
-    try {
-      const result = await axios(products_url);
-      setProducts(result.data);
-    } catch (error) {
-      setIsError(true);
-    }
-    setIsLoading(false);
-  };
-
-  const fetchTags = async () => {
-    try {
-      const result = await axios(tags_url);
-      console.log();
-      setTags(result.data);
-    } catch (error) {
-      setIsError(true);
-    }
-  };
-  console.log("Product Url outside useEffect");
-  console.log(products_url);
-
   useEffect(() => {
-    console.log("useEffect run cuz tag is clicked");
-    console.log("Product Url afterTagClick");
-    console.log(products_url);
+    const fetchProducts = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(products_url);
+        setProducts(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+      setIsLoading(false);
+    };
     fetchProducts();
-  }, [tagValue]);
+  }, [products_url, tagValue]);
 
   useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const result = await axios(tags_url);
+        console.log();
+        setTags(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+    };
     fetchTags();
-  }, []);
+  }, [tags_url]);
 
   return (
     <Fragment>
@@ -95,11 +78,7 @@ const ProductList = () => {
           <h1>Tags</h1>
           <Grid className={classes.tagItem} container spacing={1}>
             {tags.map((tag) => (
-              <TagItem
-                name={tag.tag}
-                handleClick={handleClick}
-                handleDelete={handleDelete}
-              />
+              <TagItem name={tag.tag} handleClick={handleClick} />
             ))}
           </Grid>
         </div>
