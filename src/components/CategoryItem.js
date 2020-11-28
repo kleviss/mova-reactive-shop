@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    margin: theme.spacing(0.5),
   },
 }));
 
@@ -31,11 +32,7 @@ const CategoryItem = ({ name, catId, pId }) => {
   return (
     <Fragment key={pId}>
       <Grid item xs sm={3} md={2} lg={1}>
-        <Link
-          className={classes.categoryLink}
-          key={name}
-          to={`/category/${catId}`}
-        >
+        <Link key={name} to={`/category/${catId}`}>
           <Chip
             className={classes.categoryItem}
             icon={<EcoIcon />}

@@ -8,8 +8,17 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginTop: "1rem",
     marginLeft: "1rem",
     marginRight: "1rem",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+  categoryItem: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "left",
   },
 }));
 
@@ -55,7 +64,7 @@ const Categories = () => {
       ) : (
         <div className={classes.root}>
           <h1>Categories</h1>
-          <Grid container spacing={2}>
+          <Grid className={classes.categoryItem} container spacing={1}>
             {categories.map((category) => (
               <CategoryItem
                 name={category.displayName}
@@ -66,8 +75,6 @@ const Categories = () => {
           </Grid>
         </div>
       )}
-
-
     </Fragment>
   );
 };
