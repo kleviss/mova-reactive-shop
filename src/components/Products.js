@@ -80,13 +80,13 @@ const ProductList = () => {
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
       {isLoading ? (
-        <div>Getting tags...</div>
+        <div>Getting products...</div>
       ) : (
         <div className={classes.root}>
           <h1>Tags</h1>
           <Grid container spacing={2}>
             {tags.map((tag) => (
-              <Grid item xs sm={3} md={2} lg={1}>
+              <Grid item xs sm={3} md={2} lg={1} key={tag.tag}>
                 <Chip
                   className={classes.tagItem}
                   icon={<FaceIcon />}
@@ -99,16 +99,30 @@ const ProductList = () => {
                 />
               </Grid>
             ))}
-            <div className={classes.root}>
-              <h1>Product List</h1>
-              <Grid container spacing={2}>
-                {products.map((product) => (
-                  <Grid item xs sm={3} md={2} lg={1}>
-                    <a>{product.displayName}</a>
-                  </Grid>
-                ))}
+          </Grid>
+        </div>
+      )}
+
+      {isLoading ? (
+        <div>Getting products...</div>
+      ) : (
+        <div className={classes.root}>
+          <h1>Tags</h1>
+          <Grid container spacing={2}>
+            {products.map((product) => (
+              <Grid item xs sm={3} md={2} lg={1} key={product.displayName}>
+                <Chip
+                  className={classes.tagItem}
+                  icon={<FaceIcon />}
+                  label={product.displayName}
+                  clickable
+                  color="primary"
+                  onClick={handleClick}
+                  onDelete={handleDelete}
+                  deleteIcon={<DoneIcon />}
+                />
               </Grid>
-            </div>
+            ))}
           </Grid>
         </div>
       )}
