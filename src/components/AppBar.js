@@ -15,6 +15,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  appBarLogo: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "80px",
+  },
 }));
 
 export default function ButtonAppBar() {
@@ -26,7 +32,10 @@ export default function ButtonAppBar() {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <Link to="/" style={{ fontWeight: "900", color: "white" }}>
-              MOVA
+              <img
+                src="https://www.mova.ie/images/MOVA-Logo-White.png"
+                className={classes.appBarLogo}
+              />
             </Link>
           </Typography>
 
