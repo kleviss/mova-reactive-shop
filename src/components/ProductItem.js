@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Link } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  routerLink: {
+    textDecoration: "none",
+    color: "black",
+  },
 }));
 
 const cards = [1, 2, 3, 4, 5];
@@ -70,40 +74,42 @@ const ProductItem = ({ name, description, price, image, id, catId, sizes }) => {
     <Fragment key={id}>
       {cards.map((card) => (
         <Grid item key={id} xs={12} sm={6} md={4}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.cardMedia}
-              image="https://source.unsplash.com/random"
-              title={name}
-            />
-            <CardContent className={classes.cardContent}>
-              <Typography
-                className={classes.categoryLabel}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                {catId}
-              </Typography>
-              <Typography gutterBottom variant="h6" component="h2">
-                {name}
-              </Typography>
-              <Typography
-                gutterBottom
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                {description}
-              </Typography>
-              <Typography gutterBottom color="secondary">
-                {sizes.map((size) => size + " ")}
-              </Typography>
-              <Typography variant="h6" component="h2">
-                €49.99
-              </Typography>
-            </CardContent>
-          </Card>
+          <Link className={classes.routerLink} key={name} to={`/item/${id}`}>
+            <Card className={classes.card}>
+              <CardMedia
+                className={classes.cardMedia}
+                image="https://source.unsplash.com/random"
+                title={name}
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography
+                  className={classes.categoryLabel}
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {catId}
+                </Typography>
+                <Typography gutterBottom variant="h6" component="h2">
+                  {name}
+                </Typography>
+                <Typography
+                  gutterBottom
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                >
+                  {description}
+                </Typography>
+                <Typography gutterBottom color="secondary">
+                  {sizes.map((size) => size + " ")}
+                </Typography>
+                <Typography variant="h6" component="h2">
+                  €49.99
+                </Typography>
+              </CardContent>
+            </Card>
+          </Link>
         </Grid>
       ))}
     </Fragment>
