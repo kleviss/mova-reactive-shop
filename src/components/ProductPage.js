@@ -18,6 +18,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+var images = [
+  {
+    name: "Random Name #1",
+    description: "Hello World!",
+    image:
+      "https://1pqhh33i8vp3w759l43a3pz1-wpengine.netdna-ssl.com/wp-content/uploads/2011/10/535015w_taslan_shorts_w_navy.jpg",
+  },
+
+  {
+    name: "Random Name #2",
+    description: "Hello World!",
+    image:
+      "https://1pqhh33i8vp3w759l43a3pz1-wpengine.netdna-ssl.com/wp-content/uploads/2011/10/535015w_taslan_shorts_w_navy.jpg",
+  },
+];
+
 export default function ProductPage() {
   const classes = useStyles();
 
@@ -27,10 +43,28 @@ export default function ProductPage() {
       <Container fixed>
         <Grid container spacing={3}>
           <Grid item lg={6} md sm={12} xs={12}>
-            <Paper className={classes.paper}></Paper>
+            <Paper className={classes.paper}>
+              <div>
+                <Carousel animation="slide" autoPlay={false}>
+                  {images.map((item) => (
+                    <img style={{ width: "95%" }} src={item.image} alt="rand" />
+                  ))}
+                </Carousel>
+              </div>
+            </Paper>
           </Grid>
           <Grid item lg={6} md sm={12} xs={12}>
-            <Paper className={classes.paper}></Paper>
+            <Paper className={classes.paper}>
+              <div>
+                <img
+                  style={{ width: "95%" }}
+                  src={
+                    "https://1pqhh33i8vp3w759l43a3pz1-wpengine.netdna-ssl.com/wp-content/uploads/2011/10/535015w_taslan_shorts_w_navy.jpg"
+                  }
+                  alt="rand"
+                />
+              </div>
+            </Paper>
           </Grid>
         </Grid>
       </Container>
