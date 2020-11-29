@@ -9,15 +9,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginTop: "1rem",
-    marginLeft: "1rem",
     marginRight: "1rem",
     "& > *": {
       margin: theme.spacing(0.5),
     },
   },
-  rootProduct: {
+  rootTitle: {
+    marginLeft: "1rem",
     flexGrow: 1,
-    margin: "1%",
     "& > *": {
       margin: theme.spacing(0.5),
     },
@@ -78,7 +77,7 @@ const ProductList = () => {
     <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
-      <div className={classes.root}>
+      <div className={classes.rootTitle}>
         <h1>Tags</h1>
         <Grid className={classes.tagItem} container spacing={1}>
           {tags.map((tag) => (
@@ -88,13 +87,14 @@ const ProductList = () => {
       </div>
 
       {isLoading ? (
-        <div className={classes.root}>
+        <div className={classes.rootTitle}>
           <h1>Products</h1>
           <div>Getting products...</div>
         </div>
       ) : (
-        <div className={classes.rootProduct}>
-          <h1>Products</h1>
+        
+        <div className={classes.root}>
+          <h1 className={classes.rootTitle}>Products</h1>
           <Grid className={classes.tagItem} container spacing={1}>
             {products.map((product) => (
               <ProductItem
@@ -104,6 +104,7 @@ const ProductList = () => {
                 image={product.picture}
                 id={product.itemId}
                 catId={product.categoryId}
+                sizes={product.availableSizes}
               />
             ))}
           </Grid>
