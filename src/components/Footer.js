@@ -5,13 +5,21 @@ import Link from "@material-ui/core/Link";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+    <Typography
+      variant="body2"
+      color="textSecondary"
+      align="center"
+      gutterBottom
+    >
+      {"⚒ Created with ♥ (!☕) by Klev"}
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "}
+        <Link color="inherit" href="https://www.mova.ie/">
+          MOVA
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
     </Typography>
   );
 }
@@ -30,16 +38,14 @@ const Footer = () => {
     <React.Fragment>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
         <Typography
-          variant="subtitle1"
+          variant="h6"
           align="center"
           color="textSecondary"
           component="p"
+          gutterBottom
         >
-          Something here to give the footer a purpose!
+          Dress to impress🧜‍♂️
         </Typography>
         <Copyright />
       </footer>
