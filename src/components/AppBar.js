@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link to="/" style={{ fontWeight: "900", color: "white" }}>
+            <Link to="/">
               <img
                 src="https://www.mova.ie/images/MOVA-Logo-White.png"
                 className={classes.appBarLogo}
