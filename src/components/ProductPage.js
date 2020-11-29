@@ -6,6 +6,12 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+import Chip from "@material-ui/core/Chip";
+import DoneIcon from "@material-ui/icons/Done";
+
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,9 +19,18 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: "left",
     color: theme.palette.text.secondary,
-    border: "2px solid black",
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  availableSizes: {
+    display: "flex",
+    justifyContents: "space-around",
+  },
+  chipItem: {
+    marginRight: "1px",
   },
 }));
 
@@ -64,7 +79,7 @@ const ProductPage = ({ match }) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Container fixed>
+      <Container fixed style={{ marginTop: "10px" }}>
         <Grid container spacing={3}>
           <Grid item lg={6} md sm={12} xs={12}>
             <Paper className={classes.paper}>
@@ -82,20 +97,43 @@ const ProductPage = ({ match }) => {
               {productItem.map((product) => (
                 <div>
                   {" "}
-                  <h1>{product.displayName}</h1>
-                  <h1>
-                    {product.collectionId}/{product.tags[0]}
-                  </h1>
-                  <h1>
-                    {product.originalPrice}/{product.currentPrice}
-                  </h1>
-                  <h2>
-                    Select size:
+                  <Typography variant="button" display="block">
+                    {product.collectionId} {">"} {product.tags[0]}
+                  </Typography>
+                  <Typography variant="h4" gutterBottom>
+                    {product.displayName}
+                  </Typography>
+                  <h3>Select size: </h3>
+                  <h3 className={classes.availableSizes}>
                     {product.availableSizes.map((size) => (
-                      <p>{size}</p>
+                      <Grid container spacing={2} justify="center">
+                        <Grid item>{size}</Grid>
+                      </Grid>
                     ))}
-                  </h2>
-                  <h3>{product.description}</h3>
+                  </h3>
+                  <div className={classes.heroButtons}>
+                    <Grid
+                      container
+                      spacing={2}
+                      justify="center"
+                      style={{ marginBottom: "10px" }}
+                    >
+                      <Grid item>
+                        <Button variant="contained" color="primary">
+                          Main call to action
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button variant="outlined" color="primary">
+                          Secondary action
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </div>
+                  <Typography variant="body1" component="h2" gutterBottom>
+                    {product.description} {product.description}{" "}
+                    {product.description} {product.description}
+                  </Typography>
                 </div>
               ))}
             </Paper>
