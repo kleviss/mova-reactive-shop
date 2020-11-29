@@ -35,6 +35,7 @@ export default function ButtonAppBar() {
               <img
                 src="https://www.mova.ie/images/MOVA-Logo-White.png"
                 className={classes.appBarLogo}
+                alt="MOVA logo"
               />
             </Link>
           </Typography>
