@@ -7,9 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import Chip from "@material-ui/core/Chip";
-import DoneIcon from "@material-ui/icons/Done";
 
 import Typography from "@material-ui/core/Typography";
 
