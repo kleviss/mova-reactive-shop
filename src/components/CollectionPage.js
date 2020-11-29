@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
+  collectionTitle: {
+    textTransform: "capitalize",
+    fontWeight: "bolder",
+  },
 }));
 
 const CollectionPage = ({ match }) => {
@@ -84,6 +88,7 @@ const CollectionPage = ({ match }) => {
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
               <Typography
+                className={classes.collectionTitle}
                 component="h4"
                 variant="h3"
                 align="center"
