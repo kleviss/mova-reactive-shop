@@ -54,7 +54,7 @@ const Collections = () => {
       ) : (
         <div className={classes.root}>
           <h1>Collections</h1>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             {collections.map((tile) => (
               <CollectionItem name={tile.displayName} id={tile.collectionId} />
             ))}
