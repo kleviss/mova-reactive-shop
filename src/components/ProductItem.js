@@ -1,4 +1,5 @@
-import React, { Fragment, Link } from "react";
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -59,9 +60,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
-  routerLink: {
+  linkStyle: {
     textDecoration: "none",
-    color: "black",
   },
 }));
 
@@ -74,7 +74,7 @@ const ProductItem = ({ name, description, price, image, id, catId, sizes }) => {
     <Fragment key={id}>
       {cards.map((card) => (
         <Grid item key={id} xs={12} sm={6} md={4}>
-          <Link className={classes.routerLink} key={name} to={`/item/${id}`}>
+          <Link className={classes.linkStyle} key={name} to={`/item/${id}`}>
             <Card className={classes.card}>
               <CardMedia
                 className={classes.cardMedia}

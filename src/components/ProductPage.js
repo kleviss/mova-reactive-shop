@@ -34,7 +34,7 @@ var images = [
   },
 ];
 
-export default function ProductPage() {
+const ProductPage = ({ match }) => {
   const classes = useStyles();
 
   return (
@@ -70,4 +70,6 @@ export default function ProductPage() {
       </Container>
     </div>
   );
-}
+};
+
+export default ProductPage;
