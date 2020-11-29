@@ -83,6 +83,7 @@ const CategoryPage = ({ match }) => {
                 image={item.picture}
                 id={item.itemId}
                 catId={item.categoryId}
+                sizes={item.availableSizes}
               />
             ))}
           </Grid>
