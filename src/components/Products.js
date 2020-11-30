@@ -3,6 +3,8 @@ import TagItem from "./TagItem.js";
 import ProductItem from "./ProductItem.js";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import Chip from "@material-ui/core/Chip";
+import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   tagItem: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "left",
+    justifyContent: "center",
+    margin: theme.spacing(0.5),
   },
 }));
 
@@ -79,7 +82,18 @@ const ProductList = () => {
 
       <div className={classes.rootTitle}>
         <h1>Tags</h1>
-        <Grid className={classes.tagItem} container spacing={1}>
+        <Grid container spacing={1}>
+          <Grid item xs={5} sm={3} md={2} lg={1}>
+            <Chip
+              className={classes.tagItem}
+              icon={<AllInclusiveIcon />}
+              label="All Products"
+              clickable
+              color="secondary"
+              onClick={(event) => handleClick("")}
+              value=""
+            />
+          </Grid>
           {tags.map((tag) => (
             <TagItem name={tag.tag} handleClick={handleClick} />
           ))}
@@ -92,7 +106,6 @@ const ProductList = () => {
           <div>Getting products...</div>
         </div>
       ) : (
-        
         <div className={classes.root}>
           <h1 className={classes.rootTitle}>Products</h1>
           <Grid className={classes.tagItem} container spacing={1}>

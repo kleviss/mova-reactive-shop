@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
-import FaceIcon from "@material-ui/icons/Face";
+import LoyaltyIcon from "@material-ui/icons/Loyalty";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,38 +26,15 @@ const TagItem = ({ name, handleClick }) => {
 
   return (
     <Fragment key={name}>
-      <Grid item xs={5} sm={3} md={2} lg={1}>
-        <Chip
-          className={classes.tagItem}
-          icon={<FaceIcon />}
-          label="All Products"
-          clickable
-          color="secondary"
-          onClick={(event) => handleClick("")}
-          value=""
-        />
-      </Grid>
-
       <Grid item xs={4} sm={3} md={2} lg={1}>
         <Chip
           className={classes.tagItem}
-          icon={<FaceIcon />}
+          icon={<LoyaltyIcon />}
           label={name}
           clickable
           color="primary"
           onClick={(event) => handleClick(name)}
           value={name}
-        />
-      </Grid>
-      <Grid item xs={5} sm={3} md={2} lg={1}>
-        <Chip
-          className={classes.tagItem}
-          icon={<FaceIcon />}
-          label="onThatAss"
-          clickable
-          color="primary"
-          onClick={(event) => handleClick("onThatAss")}
-          value="onThatAss"
         />
       </Grid>
     </Fragment>
