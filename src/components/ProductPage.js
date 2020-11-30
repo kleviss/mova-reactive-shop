@@ -7,6 +7,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 import Typography from "@material-ui/core/Typography";
 
@@ -29,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
   chipItem: {
     marginRight: "1px",
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: "98%",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const ProductPage = ({ match }) => {
@@ -37,8 +49,13 @@ const ProductPage = ({ match }) => {
   console.log(match);
 
   const [productItem, setProductItem] = useState([]);
+  const [size, setSize] = React.useState("");
 
   const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items/${match.params.id}`;
+
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
+  };
 
   useEffect(() => {
     console.log("useEffect has been run");
@@ -105,20 +122,33 @@ const ProductPage = ({ match }) => {
                 <Typography variant="h4" gutterBottom>
                   {productItem.displayName}
                 </Typography>
-                <h3>Select size: </h3>
-                <h3 className={classes.availableSizes}>
-                  {/* {productItem.availableSizes.map((size) => ( */}
-                  <Grid container spacing={2} justify="center">
-                    <Grid item>
-                      {/* Provide a check for undefined data and then render
+
+                <Grid container spacing={2} justify="center">
+                  {/* Provide a check for undefined data and then render
                       the component because initially no data but it is available in the
                       second render. */}
+                  <FormControl required className={classes.formControl}>
+                    <InputLabel id="demo-simple-select-required-label">
+                      Size
+                    </InputLabel>
+                    <Select
+                      labelId="select-required-label"
+                      id="simple-select-required"
+                      value={size}
+                      onChange={handleSizeChange}
+                      className={classes.selectEmpty}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
                       {productItem.availableSizes &&
-                        productItem.availableSizes.map((size) => size)}{" "}
-                    </Grid>
-                  </Grid>
-                  {/* ))} */}
-                </h3>
+                        productItem.availableSizes.map((size) => (
+                          <MenuItem value={size}>{size}</MenuItem>
+                        ))}
+                    </Select>
+                    <FormHelperText>Please select your size</FormHelperText>
+                  </FormControl>
+                </Grid>
                 <div className={classes.heroButtons}>
                   <Grid
                     container
@@ -128,12 +158,12 @@ const ProductPage = ({ match }) => {
                   >
                     <Grid item>
                       <Button variant="contained" color="primary">
-                        Main call to action
+                        Add to Cart
                       </Button>
                     </Grid>
                     <Grid item>
                       <Button variant="outlined" color="primary">
-                        Secondary action
+                        Shop other Item
                       </Button>
                     </Grid>
                   </Grid>
