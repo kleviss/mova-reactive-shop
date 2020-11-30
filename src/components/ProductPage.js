@@ -54,7 +54,7 @@ const ProductPage = ({ match }) => {
 
   const [productItem, setProductItem] = useState([]);
 
-  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items`;
+  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/item/${match.params.id}`;
 
   useEffect(() => {
     console.log("useEffect has been run");
