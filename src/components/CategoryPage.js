@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   categoryTitle: {
     textTransform: "capitalize",
-    fontWeight: "bolder"
+    fontWeight: "bolder",
   },
 }));
 
@@ -83,7 +83,6 @@ const CategoryPage = ({ match }) => {
   return (
     <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
-      {isEmpty && <div>No items at the moment ... Check back next year :p</div>}
 
       {isLoading ? (
         <div>Getting your favorite apparel...</div>
@@ -101,6 +100,25 @@ const CategoryPage = ({ match }) => {
               >
                 Category: {match.params.id}
               </Typography>
+              {isEmpty && (
+                <div>
+                  <Typography
+                    style={{ fontWeight: "bolder" }}
+                    variant="h5"
+                    align="center"
+                    color="textSecondary"
+                    paragraph
+                  >
+                    <Typography>
+                      <hr></hr>
+                    </Typography>
+                    No items at the moment ... Check back next year :p{" "}
+                  </Typography>
+                  <Typography>
+                    <hr></hr>
+                  </Typography>
+                </div>
+              )}
               <Typography
                 variant="h6"
                 align="center"
@@ -124,6 +142,12 @@ const CategoryPage = ({ match }) => {
                     </Button>
                   </Grid>
                 </Grid>
+                <Typography
+                  variant="h6"
+                  align="center"
+                  color="textSecondary"
+                  paragraph
+                ></Typography>
               </div>
             </Container>
           </div>

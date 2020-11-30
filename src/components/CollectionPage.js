@@ -53,16 +53,20 @@ const CollectionPage = ({ match }) => {
   const [collectionItems, setCollectionItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items?collection=${match.params.id}&tag=sports`;
 
   useEffect(() => {
     const fetchCollectionItems = async () => {
       setIsError(false);
+      setIsEmpty(false);
       setIsLoading(true);
 
       try {
         const result = await axios(url);
+
+        if (result.data.length === 0) setIsEmpty(true);
 
         setCollectionItems(result.data);
       } catch (error) {
@@ -97,6 +101,25 @@ const CollectionPage = ({ match }) => {
               >
                 Collection: {match.params.id}
               </Typography>
+              {isEmpty && (
+                <div>
+                  <Typography
+                    style={{ fontWeight: "bolder" }}
+                    variant="h5"
+                    align="center"
+                    color="textSecondary"
+                    paragraph
+                  >
+                    <Typography>
+                      <hr></hr>
+                    </Typography>
+                    No items at the moment ... Check back next year :p{" "}
+                  </Typography>
+                  <Typography>
+                    <hr></hr>
+                  </Typography>
+                </div>
+              )}
               <Typography
                 variant="h6"
                 align="center"
