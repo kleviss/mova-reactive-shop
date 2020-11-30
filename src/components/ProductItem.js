@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import PriceTag from "./PriceTag";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductItem = ({ name, description, price, image, id, catId, sizes }) => {
+const ProductItem = ({ name, description, originalPrice, currentPrice, image, id, catId, sizes }) => {
   const classes = useStyles();
 
   return (
@@ -94,9 +95,7 @@ const ProductItem = ({ name, description, price, image, id, catId, sizes }) => {
               <Typography gutterBottom color="secondary">
                 {sizes.map((size) => size + " ")}
               </Typography>
-              <Typography variant="h6" component="h2">
-                €49.99
-              </Typography>
+              <PriceTag originalPrice={originalPrice} currentPrice={currentPrice} />
             </CardContent>
           </Card>
         </Link>

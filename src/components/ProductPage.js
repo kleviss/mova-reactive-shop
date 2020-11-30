@@ -12,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import PriceTag from "./PriceTag";
 
 import Typography from "@material-ui/core/Typography";
 
@@ -122,7 +123,10 @@ const ProductPage = ({ match }) => {
                 <Typography variant="h4" gutterBottom>
                   {productItem.displayName}
                 </Typography>
-
+                <PriceTag
+                  originalPrice={productItem.originalPrice}
+                  currentPrice={productItem.currentPrice}
+                />
                 <Grid container spacing={2} justify="center">
                   {/* Provide a check for undefined data and then render
                       the component because initially no data but it is available in the

@@ -157,7 +157,8 @@ const CategoryPage = ({ match }) => {
                 <ProductItem
                   name={item.displayName}
                   description={item.description}
-                  price={item.originalPrice}
+                  originalPrice={item.originalPrice}
+                  currentPrice={item.currentPrice}
                   image={item.picture}
                   id={item.itemId}
                   catId={item.categoryId}

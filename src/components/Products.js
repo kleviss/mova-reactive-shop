@@ -113,7 +113,8 @@ const ProductList = () => {
               <ProductItem
                 name={product.displayName}
                 description={product.description}
-                price={product.currentPrice}
+                originalPrice={product.originalPrice}
+                currentPrice={product.currentPrice}
                 image={product.picture}
                 id={product.itemId}
                 catId={product.categoryId}
