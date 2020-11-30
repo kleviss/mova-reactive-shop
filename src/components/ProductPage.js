@@ -31,22 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var images = [
-  {
-    name: "Random Name #1",
-    description: "Hello World!",
-    image:
-      "https://1pqhh33i8vp3w759l43a3pz1-wpengine.netdna-ssl.com/wp-content/uploads/2011/10/535015w_taslan_shorts_w_navy.jpg",
-  },
-
-  {
-    name: "Random Name #2",
-    description: "Hello World!",
-    image:
-      "https://1pqhh33i8vp3w759l43a3pz1-wpengine.netdna-ssl.com/wp-content/uploads/2011/10/535015w_taslan_shorts_w_navy.jpg",
-  },
-];
-
 const ProductPage = ({ match }) => {
   const classes = useStyles();
 
@@ -54,7 +38,7 @@ const ProductPage = ({ match }) => {
 
   const [productItem, setProductItem] = useState([]);
 
-  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/item/${match.params.id}`;
+  const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items/${match.params.id}`;
 
   useEffect(() => {
     console.log("useEffect has been run");
@@ -70,9 +54,27 @@ const ProductPage = ({ match }) => {
     };
 
     fetchProductItem();
+  }, [match.params.id, url]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  console.log(productItem.picture);
+
+  var images = [
+    {
+      name: `${productItem.displayName}`,
+      description: `${productItem.description}`,
+      image: `${productItem.picture}`,
+    },
+
+    {
+      name: `${productItem.displayName}`,
+      description: `${productItem.description}`,
+      image: `${productItem.picture}`,
+    },
+  ];
+
+  console.log(images);
+  console.log(productItem.availableSizes);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -81,9 +83,13 @@ const ProductPage = ({ match }) => {
           <Grid item lg={6} md sm={12} xs={12}>
             <Paper className={classes.paper}>
               <div>
-                <Carousel animation="slide" autoPlay={false}>
+                <Carousel animation="fade" autoPlay={false}>
                   {images.map((item) => (
-                    <img style={{ width: "95%" }} src={item.image} alt="rand" />
+                    <img
+                      style={{ width: "100%" }}
+                      src={item.image}
+                      alt="Product"
+                    />
                   ))}
                 </Carousel>
               </div>
@@ -91,48 +97,51 @@ const ProductPage = ({ match }) => {
           </Grid>
           <Grid item lg={6} md sm={12} xs={12}>
             <Paper className={classes.paper}>
-              {productItem.map((product) => (
-                <div>
-                  {" "}
-                  <Typography variant="button" display="block">
-                    {product.collectionId} {">"} {product.tags[0]}
-                  </Typography>
-                  <Typography variant="h4" gutterBottom>
-                    {product.displayName}
-                  </Typography>
-                  <h3>Select size: </h3>
-                  <h3 className={classes.availableSizes}>
-                    {product.availableSizes.map((size) => (
-                      <Grid container spacing={2} justify="center">
-                        <Grid item>{size}</Grid>
-                      </Grid>
-                    ))}
-                  </h3>
-                  <div className={classes.heroButtons}>
-                    <Grid
-                      container
-                      spacing={2}
-                      justify="center"
-                      style={{ marginBottom: "10px" }}
-                    >
-                      <Grid item>
-                        <Button variant="contained" color="primary">
-                          Main call to action
-                        </Button>
-                      </Grid>
-                      <Grid item>
-                        <Button variant="outlined" color="primary">
-                          Secondary action
-                        </Button>
-                      </Grid>
+              <div>
+                <Typography variant="button" display="block">
+                  {productItem.collectionId}
+                  {" >"} {productItem.tags}
+                </Typography>
+                <Typography variant="h4" gutterBottom>
+                  {productItem.displayName}
+                </Typography>
+                <h3>Select size: </h3>
+                <h3 className={classes.availableSizes}>
+                  {/* {productItem.availableSizes.map((size) => ( */}
+                  <Grid container spacing={2} justify="center">
+                    <Grid item>
+                      {/* Provide a check for undefined data and then render
+                      the component because initially no data but it is available in the
+                      second render. */}
+                      {productItem.availableSizes &&
+                        productItem.availableSizes.map((size) => size)}{" "}
                     </Grid>
-                  </div>
-                  <Typography variant="body1" component="h2" gutterBottom>
-                    {product.description} {product.description}{" "}
-                    {product.description} {product.description}
-                  </Typography>
+                  </Grid>
+                  {/* ))} */}
+                </h3>
+                <div className={classes.heroButtons}>
+                  <Grid
+                    container
+                    spacing={2}
+                    justify="center"
+                    style={{ marginBottom: "10px" }}
+                  >
+                    <Grid item>
+                      <Button variant="contained" color="primary">
+                        Main call to action
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button variant="outlined" color="primary">
+                        Secondary action
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </div>
-              ))}
+                <Typography variant="body1" component="h2" gutterBottom>
+                  {productItem.description}
+                </Typography>
+              </div>
             </Paper>
           </Grid>
         </Grid>
