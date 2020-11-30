@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   card: {
-    height: "100%",
+    minHeight: "100%",
     display: "flex",
     flexDirection: "column",
   },
@@ -65,53 +65,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5];
-
 const ProductItem = ({ name, description, price, image, id, catId, sizes }) => {
   const classes = useStyles();
 
   return (
     <Fragment key={id}>
-      {cards.map((card) => (
-        <Grid item key={id} xs={12} sm={6} md={4}>
-          <Link className={classes.linkStyle} key={name} to={`/item/${id}`}>
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image="https://source.unsplash.com/random"
-                title={name}
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography
-                  className={classes.categoryLabel}
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
-                  {catId}
-                </Typography>
-                <Typography gutterBottom variant="h6" component="h2">
-                  {name}
-                </Typography>
-                <Typography
-                  gutterBottom
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                >
-                  {description}
-                </Typography>
-                <Typography gutterBottom color="secondary">
-                  {sizes.map((size) => size + " ")}
-                </Typography>
-                <Typography variant="h6" component="h2">
-                  €49.99
-                </Typography>
-              </CardContent>
-            </Card>
-          </Link>
-        </Grid>
-      ))}
+      <Grid item key={id} xs={12} sm={6} md={4} lg={3}>
+        <Link className={classes.linkStyle} key={name} to={`/item/${id}`}>
+          <Card className={classes.card}>
+            <CardMedia
+              className={classes.cardMedia}
+              image={image}
+              title={name}
+            />
+            <CardContent className={classes.cardContent}>
+              <Typography
+                className={classes.categoryLabel}
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              >
+                {catId}
+              </Typography>
+              <Typography gutterBottom variant="h6" component="h2">
+                {name}
+              </Typography>
+
+              <Typography gutterBottom color="secondary">
+                {sizes.map((size) => size + " ")}
+              </Typography>
+              <Typography variant="h6" component="h2">
+                €49.99
+              </Typography>
+            </CardContent>
+          </Card>
+        </Link>
+      </Grid>
     </Fragment>
   );
 };
