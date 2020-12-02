@@ -13,7 +13,6 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import PriceTag from "./PriceTag";
-
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,12 +49,17 @@ const ProductPage = ({ match }) => {
   console.log(match);
 
   const [productItem, setProductItem] = useState([]);
-  const [size, setSize] = React.useState("");
+  const [size, setSize] = useState("");
+  const [qty, setQty] = useState("");
 
   const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items/${match.params.id}`;
 
   const handleSizeChange = (event) => {
     setSize(event.target.value);
+  };
+
+  const handleQtyChange = (event) => {
+    setQty(event.target.value);
   };
 
   useEffect(() => {
@@ -76,7 +80,7 @@ const ProductPage = ({ match }) => {
 
   console.log(productItem.picture);
 
-  var images = [
+  let images = [
     {
       name: `${productItem.displayName}`,
       description: `${productItem.description}`,
@@ -90,6 +94,7 @@ const ProductPage = ({ match }) => {
     },
   ];
 
+  let quantity = ["1", "2", "3", "4", "5"];
   console.log(images);
   console.log(productItem.availableSizes);
 
@@ -123,41 +128,70 @@ const ProductPage = ({ match }) => {
                 <Typography variant="h4" gutterBottom>
                   {productItem.displayName}
                 </Typography>
+
                 <PriceTag
                   originalPrice={productItem.originalPrice}
                   currentPrice={productItem.currentPrice}
                 />
-                <Grid container spacing={2} justify="center">
+                <Typography variant="body1" component="h2" gutterBottom>
+                  {productItem.description}
+                </Typography>
+                <Grid container spacing={2} justify="left">
                   {/* Provide a check for undefined data and then render
                       the component because initially no data but it is available in the
                       second render. */}
-                  <FormControl required className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-required-label">
-                      Size
-                    </InputLabel>
-                    <Select
-                      labelId="select-required-label"
-                      id="simple-select-required"
-                      value={size}
-                      onChange={handleSizeChange}
-                      className={classes.selectEmpty}
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      {productItem.availableSizes &&
-                        productItem.availableSizes.map((size) => (
-                          <MenuItem value={size}>{size}</MenuItem>
-                        ))}
-                    </Select>
-                    <FormHelperText>Please select your size</FormHelperText>
-                  </FormControl>
+                  <Grid item>
+                    <FormControl required className={classes.formControl}>
+                      <InputLabel id="select-size-label">
+                        Size
+                      </InputLabel>
+                      <Select
+                        labelId="select-size-label"
+                        id="select-size-label"
+                        value={size}
+                        onChange={handleSizeChange}
+                        className={classes.selectEmpty}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        {productItem.availableSizes &&
+                          productItem.availableSizes.map((size) => (
+                            <MenuItem value={size}>{size}</MenuItem>
+                          ))}
+                      </Select>
+                      <FormHelperText>Please select size</FormHelperText>
+                    </FormControl>
+
+                    <FormControl required className={classes.formControl}>
+                      <InputLabel id="select-quantity-label">
+                        Quantity
+                      </InputLabel>
+                      <Select
+                        labelId="select-quantity-label"
+                        id="select-quantity-label"
+                        value={qty}
+                        onChange={handleQtyChange}
+                        className={classes.selectEmpty}
+                      >
+                        <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem>
+                        {quantity &&
+                          quantity.map((qty) => (
+                            <MenuItem value={qty}>{qty}</MenuItem>
+                          ))}
+                      </Select>
+                      <FormHelperText>Please select quantity</FormHelperText>
+                    </FormControl>
+                  </Grid>
+                  <Grid item></Grid>
                 </Grid>
                 <div className={classes.heroButtons}>
                   <Grid
                     container
-                    spacing={2}
-                    justify="center"
+                    spacing={3}
+                    justify="left"
                     style={{ marginBottom: "10px" }}
                   >
                     <Grid item>
@@ -172,9 +206,6 @@ const ProductPage = ({ match }) => {
                     </Grid>
                   </Grid>
                 </div>
-                <Typography variant="body1" component="h2" gutterBottom>
-                  {productItem.description}
-                </Typography>
               </div>
             </Paper>
           </Grid>
