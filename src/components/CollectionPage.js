@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useAppContext } from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,12 @@ const useStyles = makeStyles((theme) => ({
 const CollectionPage = ({ match }) => {
   const classes = useStyles();
 
-  const [collectionItems, setCollectionItems] = useState([]);
+  const {
+    collectionItems: [collectionItems, setCollectionItems],
+  } = useAppContext();
+
+  
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -85,85 +91,85 @@ const CollectionPage = ({ match }) => {
     <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
-      {isLoading ? (
+      {/* {isLoading ? (
         <div>Getting your favorite apparel...</div>
-      ) : (
-        <div>
-          <div className={classes.heroContent}>
-            <Container maxWidth="sm">
-              <Typography
-                className={classes.collectionTitle}
-                component="h4"
-                variant="h3"
-                align="center"
-                color="textPrimary"
-                gutterBottom
-              >
-                Collection: {match.params.id}
-              </Typography>
-              {isEmpty && (
-                <div>
-                  <Typography
-                    style={{ fontWeight: "bolder" }}
-                    variant="h5"
-                    align="center"
-                    color="textSecondary"
-                    paragraph
-                  >
-                    <Typography>
-                      <hr></hr>
-                    </Typography>
-                    No items at the moment ... Check back next year :p{" "}
-                  </Typography>
+      ) : ( */}
+      <div>
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              className={classes.collectionTitle}
+              component="h4"
+              variant="h3"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Collection: {match.params.id}
+            </Typography>
+            {isEmpty && (
+              <div>
+                <Typography
+                  style={{ fontWeight: "bolder" }}
+                  variant="h5"
+                  align="center"
+                  color="textSecondary"
+                  paragraph
+                >
                   <Typography>
                     <hr></hr>
                   </Typography>
-                </div>
-              )}
-              <Typography
-                variant="h6"
-                align="center"
-                color="textSecondary"
-                paragraph
-              >
-                Something short and leading about the collection below—its
-                contents, the creator, etc. Make it short and sweet, but not too
-                short so folks don&apos;t simply skip over it entirely.
-              </Typography>
-              <div className={classes.heroButtons}>
-                <Grid container spacing={2} justify="center">
-                  <Grid item>
-                    <Button variant="contained" color="primary">
-                      Main call to action
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="outlined" color="primary">
-                      Secondary action
-                    </Button>
-                  </Grid>
-                </Grid>
+                  No items at the moment ... Check back next year :p{" "}
+                </Typography>
+                <Typography>
+                  <hr></hr>
+                </Typography>
               </div>
-            </Container>
-          </div>
-          <Container className={classes.cardGrid} maxWidth="md">
-            <Grid className={classes.tagItem} container spacing={1}>
-              {collectionItems.map((item) => (
-                <ProductItem
-                  name={item.displayName}
-                  description={item.description}
-                  originalPrice={item.originalPrice}
-                  currentPrice={item.currentPrice}
-                  image={item.picture}
-                  id={item.itemId}
-                  catId={item.categoryId}
-                  sizes={item.availableSizes}
-                />
-              ))}
-            </Grid>
+            )}
+            <Typography
+              variant="h6"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              Something short and leading about the collection below—its
+              contents, the creator, etc. Make it short and sweet, but not too
+              short so folks don&apos;t simply skip over it entirely.
+            </Typography>
+            <div className={classes.heroButtons}>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    Main call to action
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Secondary action
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
           </Container>
         </div>
-      )}
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Grid className={classes.tagItem} container spacing={1}>
+            {collectionItems.map((item) => (
+              <ProductItem
+                name={item.displayName}
+                description={item.description}
+                originalPrice={item.originalPrice}
+                currentPrice={item.currentPrice}
+                image={item.picture}
+                id={item.itemId}
+                catId={item.categoryId}
+                sizes={item.availableSizes}
+              />
+            ))}
+          </Grid>
+        </Container>
+      </div>
+      {/* )} */}
     </Fragment>
   );
 };
