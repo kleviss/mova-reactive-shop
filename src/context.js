@@ -19,11 +19,21 @@ export var store = {};
 export const getStore = () => ({ ...store });
 export const AppContextProvider = ({ children }) => {
 
-  const collections = usePersistedState(["element"], "collections");
+  const collections = usePersistedState([], "collections");
+  const collectionItems = usePersistedState([], "collectionItems");
+  const categories = usePersistedState([], "categories");
+  const categoryItems = usePersistedState([], "categoryItems");
+
+  const tags = usePersistedState([], "tags");
+  const products = usePersistedState([], "products");
 
   store = {
     collections,
+    categories,
+    tags,
+    products,
+    collectionItems,
+    categoryItems,
   };
 
-  return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 };
