@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import CollectionItem from "./CollectionItem";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import { useAppContext } from "../context";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -16,7 +17,12 @@ const useStyles = makeStyles((theme) => ({
 const Collections = () => {
   const classes = useStyles();
 
-  const [collections, setCollections] = useState([]);
+  const {
+    collections: [collections, setCollections],
+  } = useAppContext();
+
+  // const [collections, setCollections] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -49,18 +55,18 @@ const Collections = () => {
     <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
-      {isLoading ? (
+      {/* {isLoading ? (
         <div>Getting your favorite apparel...</div>
-      ) : (
-        <div className={classes.root}>
-          <h1>Collections</h1>
-          <Grid container spacing={4}>
-            {collections.map((tile) => (
-              <CollectionItem name={tile.displayName} id={tile.collectionId} />
-            ))}
-          </Grid>
-        </div>
-      )}
+      ) : ( */}
+      <div className={classes.root}>
+        <h1>Collections</h1>
+        <Grid container spacing={4}>
+          {collections.map((tile) => (
+            <CollectionItem name={tile.displayName} id={tile.collectionId} />
+          ))}
+        </Grid>
+      </div>
+      {/* )} */}
     </Fragment>
   );
 };
