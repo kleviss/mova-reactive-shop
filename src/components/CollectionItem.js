@@ -50,7 +50,7 @@ const CollectionItem = ({ name, id }) => {
             >
               <CardMedia
                 className={classes.media}
-                image="https://source.unsplash.com/random"
+                image="https://images.pexels.com/photos/356808/pexels-photo-356808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 title={name}
               />
 
