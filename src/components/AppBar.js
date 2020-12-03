@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "80px",
   },
+  cartIcon: {
+    textDecoration: "none",
+    color: "white",
+  },
 }));
 
 export default function ButtonAppBar() {
@@ -39,12 +43,13 @@ export default function ButtonAppBar() {
               />
             </Link>
           </Typography>
-
-          <IconButton aria-label="show new items" color="inherit">
-            <Badge badgeContent={2} color="secondary">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>
+          <Link to="/cart" className={classes.cartIcon}>
+            <IconButton aria-label="show new items" color="inherit">
+              <Badge badgeContent={2} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
