@@ -6,6 +6,7 @@ import axios from "axios";
 import Chip from "@material-ui/core/Chip";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import { makeStyles } from "@material-ui/core/styles";
+import { useAppContext } from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,9 +35,19 @@ const useStyles = makeStyles((theme) => ({
 const ProductList = () => {
   const classes = useStyles();
 
-  const [products, setProducts] = useState([]);
-  const [tags, setTags] = useState([]);
+  // const [products, setProducts] = useState([]);
+  // const [tags, setTags] = useState([]);
+
+  const {
+    products: [products, setProducts],
+  } = useAppContext();
+
+  const {
+    tags: [tags, setTags],
+  } = useAppContext();
+
   const [tagValue, setTagValue] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -62,7 +73,8 @@ const ProductList = () => {
       setIsLoading(false);
     };
     fetchProducts();
-  }, [products_url, tagValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tagValue]);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -74,6 +86,7 @@ const ProductList = () => {
       }
     };
     fetchTags();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags_url]);
 
   return (
@@ -100,12 +113,12 @@ const ProductList = () => {
         </Grid>
       </div>
 
-      {isLoading ? (
+      {/* {isLoading ? (
         <div className={classes.rootTitle}>
           <h1>Products</h1>
           <div>Getting products...</div>
         </div>
-      ) : (
+      ) : ( */}
         <div className={classes.root}>
           <h1 className={classes.rootTitle}>Products</h1>
           <Grid className={classes.tagItem} container spacing={1}>
@@ -123,7 +136,7 @@ const ProductList = () => {
             ))}
           </Grid>
         </div>
-      )}
+      {/* )} */}
     </Fragment>
   );
 };
