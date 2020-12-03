@@ -18,7 +18,6 @@ export const useAppContext = () => React.useContext(AppContext);
 export var store = {};
 export const getStore = () => ({ ...store });
 export const AppContextProvider = ({ children }) => {
-
   const collections = usePersistedState([], "collections");
   const collectionItems = usePersistedState([], "collectionItems");
   const categories = usePersistedState([], "categories");
@@ -36,4 +35,5 @@ export const AppContextProvider = ({ children }) => {
     categoryItems,
   };
 
+  return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 };
