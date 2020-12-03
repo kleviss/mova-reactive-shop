@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import CategoryItem from "./CategoryItem";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import { useAppContext } from "../context";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -25,7 +26,12 @@ const useStyles = makeStyles((theme) => ({
 const Categories = () => {
   const classes = useStyles();
 
-  const [categories, setCategories] = useState([]);
+  const {
+    categories: [categories, setCategories],
+  } = useAppContext();
+
+  // const [categories, setCategories] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -54,22 +60,22 @@ const Categories = () => {
     <Fragment>
       {isError && <div>Something went wrong ... Please reload the page</div>}
 
-      {isLoading ? (
+      {/* {isLoading ? (
         <div>Getting your favorite apparel...</div>
-      ) : (
-        <div className={classes.root}>
-          <h1>Categories</h1>
-          <Grid className={classes.categoryItem} container spacing={1}>
-            {categories.map((category) => (
-              <CategoryItem
-                name={category.displayName}
-                catId={category.categoryId}
-                pId={category.parentId}
-              />
-            ))}
-          </Grid>
-        </div>
-      )}
+      ) : ( */}
+      <div className={classes.root}>
+        <h1>Categories</h1>
+        <Grid className={classes.categoryItem} container spacing={1}>
+          {categories.map((category) => (
+            <CategoryItem
+              name={category.displayName}
+              catId={category.categoryId}
+              pId={category.parentId}
+            />
+          ))}
+        </Grid>
+      </div>
+      {/* )} */}
     </Fragment>
   );
 };
