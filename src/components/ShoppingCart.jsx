@@ -2,6 +2,7 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import OrderSummaryItem from "./OrderSummaryItem";
 import ShoppingCartItem from "./ShoppingCartItem";
 
@@ -10,6 +11,10 @@ export default function ShoppingCart() {
     <React.Fragment>
       <CssBaseline />
       <Container fixed>
+        <Typography variant="div" component="h1" style={{ marginTop: 25 }}>
+          {" "}
+          🛒Shopping Cart
+        </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={7} lg={7}>
             <Grid container>
