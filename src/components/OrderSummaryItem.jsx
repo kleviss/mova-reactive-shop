@@ -9,16 +9,17 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {
+    position: "sticky",
     minWidth: "275",
-    marginTop: "1rem"
+    top: "1rem",
   },
 
   title: {
-    fontSize: 14
+    fontSize: 14,
   },
   pos: {
-    marginBottom: 12
-  }
+    marginBottom: 12,
+  },
 });
 
 export default function OrderSummaryItem() {
