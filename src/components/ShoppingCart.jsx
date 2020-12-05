@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import OrderSummaryItem from "./OrderSummaryItem";
 import ShoppingCartItem from "./ShoppingCartItem";
 
-export default function ShoppingCart() {
+export default function ShoppingCart({ match, location }) {
+  console.log(match);
+  console.log(location);
+
+  const [items, setItems] = useState([location.state.item]);
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -19,9 +24,16 @@ export default function ShoppingCart() {
           <Grid item xs={12} sm={6} md={7} lg={7}>
             <Grid container>
               <Grid item xs>
-                <ShoppingCartItem />
-                <ShoppingCartItem />
-                <ShoppingCartItem />
+                {items.map((item) => (
+                  <ShoppingCartItem
+                    image={item.picture}
+                    category={item.categoryId}
+                    name={item.displayName}
+                    size={location.state.chosenSize}
+                    quantity={location.state.chosenQuantity}
+                    price={item.currentPrice}
+                  />
+                ))}
               </Grid>
             </Grid>
           </Grid>
