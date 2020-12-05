@@ -23,20 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShoppingCartItem() {
+export default function ShoppingCartItem({ image, category, name, size, quantity, price }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.cover}
-        image="https://source.unsplash.com/random"
+        image={image}
         title="Live from space album cover"
       />
       <CardContent className={classes.content}>
         <CardMedia
           className={classes.cover}
-          image="https://source.unsplash.com/random"
+          image={image}
           title="Live from space album cover"
         />
         <Typography
@@ -44,10 +44,10 @@ export default function ShoppingCartItem() {
           color="textSecondary"
           gutterBottom
         >
-          Category
+          {category.charAt(0).toUpperCase() + category.slice(1)}
         </Typography>
         <Typography variant="div" component="h2">
-          Item Name{" "}
+          {name}
         </Typography>
         <Typography variant="subtitle2">
           <hr />
@@ -60,7 +60,7 @@ export default function ShoppingCartItem() {
           </Grid>
           <Grid item xs={1} sm={1} md={1} lg={1}>
             <Typography variant="h6" component="div">
-              M
+              {size}
             </Typography>
           </Grid>
           <Grid item xs={11} sm={11} md={11} lg={11}>
@@ -70,7 +70,7 @@ export default function ShoppingCartItem() {
           </Grid>
           <Grid item xs={1} sm={1} md={1} lg={1}>
             <Typography variant="h6" component="div">
-              1
+              {quantity}
             </Typography>
           </Grid>
           <Grid item xs={9} sm={9} md={10} lg={10}>
@@ -84,7 +84,7 @@ export default function ShoppingCartItem() {
           </Grid>
           <Grid item xs={2} sm={2} md={2} lg={1}>
             <Typography variant="h6" component="div" color="secondary">
-              €15.99
+              €{price}
             </Typography>
           </Grid>
         </Grid>
