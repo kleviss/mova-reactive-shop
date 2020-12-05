@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -76,7 +77,7 @@ const ProductPage = ({ match }) => {
     };
 
     fetchProductItem();
-  }, [match.params.id, url]);
+  }, [match.params.id, url, size, qty]);
 
   console.log(productItem.picture);
 
@@ -142,9 +143,7 @@ const ProductPage = ({ match }) => {
                       second render. */}
                   <Grid item>
                     <FormControl required className={classes.formControl}>
-                      <InputLabel id="select-size-label">
-                        Size
-                      </InputLabel>
+                      <InputLabel id="select-size-label">Size</InputLabel>
                       <Select
                         labelId="select-size-label"
                         id="select-size-label"
@@ -152,6 +151,7 @@ const ProductPage = ({ match }) => {
                         onChange={handleSizeChange}
                         className={classes.selectEmpty}
                       >
+                        {console.log(size)}
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
@@ -177,6 +177,7 @@ const ProductPage = ({ match }) => {
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
+                        {console.log(qty)}
                         {quantity &&
                           quantity.map((qty) => (
                             <MenuItem value={qty}>{qty}</MenuItem>
@@ -195,14 +196,27 @@ const ProductPage = ({ match }) => {
                     style={{ marginBottom: "10px" }}
                   >
                     <Grid item>
-                      <Button variant="contained" color="primary">
-                        Add to Cart
-                      </Button>
+                      <Link
+                        to={{
+                          pathname: "/cart",
+                          state: {
+                            item: productItem,
+                            chosenSize: size && size,
+                            chosenQuantity: qty && qty,
+                          },
+                        }}
+                      >
+                        <Button variant="contained" color="primary">
+                          Add to Cart
+                        </Button>
+                      </Link>
                     </Grid>
                     <Grid item>
-                      <Button variant="outlined" color="primary">
-                        Shop other Item
-                      </Button>
+                      <Link to="/">
+                        <Button variant="outlined" color="primary">
+                          Shop other Item
+                        </Button>
+                      </Link>
                     </Grid>
                   </Grid>
                 </div>
