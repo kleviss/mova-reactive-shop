@@ -31,6 +31,7 @@ export default function OrderSummaryItem() {
 
   let sum = 0;
 
+  // eslint-disable-next-line array-callback-return
   productsToBuy.cartItems[0].map((pr) => {
     sum += pr.originalPrice;
   });
@@ -63,12 +64,12 @@ export default function OrderSummaryItem() {
               €0
             </Typography>
           </Grid>
-          <Grid item xs={8} sm={9} md={9} lg={10}>
+          <Grid item xs={9} sm={9} md={9} lg={10}>
             <Typography variant="body1" component="div">
               Total
             </Typography>
           </Grid>
-          <Grid item xs={4} sm={3} md={3} lg={2}>
+          <Grid item xs={3} sm={3} md={3} lg={2}>
             <Typography color="secondary" variant="h6" component="div">
               €{sum}
             </Typography>
