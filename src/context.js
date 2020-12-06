@@ -25,6 +25,9 @@ export const AppContextProvider = ({ children }) => {
 
   const tags = usePersistedState([], "tags");
   const products = usePersistedState([], "products");
+  // const productItem = usePersistedState([], "productItem");
+  const cartItems = usePersistedState([], "cartItems");
+  // const shoppingItems = usePersistedState([cartItems], "cart");
 
   store = {
     collections,
@@ -33,6 +36,10 @@ export const AppContextProvider = ({ children }) => {
     products,
     collectionItems,
     categoryItems,
+    // productItem,
+    // cartItem,
+    cartItems,
+    // shoppingItems,
   };
 
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
