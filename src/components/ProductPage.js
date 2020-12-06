@@ -61,8 +61,6 @@ const ProductPage = ({ match }) => {
     cartItems: [cartItems, setCartItems],
   } = useAppContext();
 
-  // const kon = useAppContext(AppContextProvider);
-  // console.log("konteksti" + kon.tags);
   const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items/${match.params.id}`;
 
   const handleSizeChange = (event) => {
