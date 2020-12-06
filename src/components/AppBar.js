@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useAppContext, AppContextProvider } from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,14 +22,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "80px",
   },
-  cartIcon: {
-    textDecoration: "none",
-    color: "white",
-  },
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+
+  const pr = useAppContext(AppContextProvider);
+  console.log(pr.cartItems[0]);
 
   return (
     <div className={classes.root}>
@@ -43,9 +43,9 @@ export default function ButtonAppBar() {
               />
             </Link>
           </Typography>
-          <Link to="/cart" className={classes.cartIcon}>
+          <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
             <IconButton aria-label="show new items" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={pr.cartItems[0].length} color="secondary">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
