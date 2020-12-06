@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import { useAppContext, AppContextProvider } from "../context";
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,15 @@ const useStyles = makeStyles({
 
 export default function OrderSummaryItem() {
   const classes = useStyles();
+
+  const productsToBuy = useAppContext(AppContextProvider);
+  console.log(productsToBuy.cartItems[0]);
+
+  let sum = 0;
+
+  productsToBuy.cartItems[0].map((pr) => {
+    sum += pr.originalPrice;
+  });
 
   return (
     <Card className={classes.root} elevation={15}>
@@ -53,14 +63,14 @@ export default function OrderSummaryItem() {
               €0
             </Typography>
           </Grid>
-          <Grid item xs={11} sm={11} md={11} lg={11}>
+          <Grid item xs={8} sm={9} md={9} lg={10}>
             <Typography variant="body1" component="div">
               Total
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
-            <Typography variant="h6" component="div">
-              €0
+          <Grid item xs={4} sm={3} md={3} lg={2}>
+            <Typography color="secondary" variant="h6" component="div">
+              €{sum}
             </Typography>
           </Grid>
         </Grid>
@@ -68,7 +78,7 @@ export default function OrderSummaryItem() {
 
       <CardActions>
         <Button size="large" color="secondary">
-          BUY NOW ({1})
+          BUY NOW ({productsToBuy.cartItems[0].length})
         </Button>
       </CardActions>
     </Card>
