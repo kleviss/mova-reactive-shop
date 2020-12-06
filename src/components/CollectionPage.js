@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   cardGrid: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(8),
   },
   collectionTitle: {
@@ -55,7 +55,6 @@ const CollectionPage = ({ match }) => {
     collectionItems: [collectionItems, setCollectionItems],
   } = useAppContext();
 
-  
   // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -133,10 +132,9 @@ const CollectionPage = ({ match }) => {
               paragraph
             >
               Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              contents, the creator, etc.
             </Typography>
-            <div className={classes.heroButtons}>
+            {/* <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -149,7 +147,7 @@ const CollectionPage = ({ match }) => {
                   </Button>
                 </Grid>
               </Grid>
-            </div>
+            </div> */}
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
