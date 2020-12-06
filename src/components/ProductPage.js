@@ -15,6 +15,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import PriceTag from "./PriceTag";
 import Typography from "@material-ui/core/Typography";
+// import ShoppingCart from "./ShoppingCart";
+import { useAppContext, AppContextProvider } from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,14 @@ const ProductPage = ({ match }) => {
   const [size, setSize] = useState("");
   const [qty, setQty] = useState("");
 
+  // const [cart, setCart] = useState([]);
+
+  const {
+    cartItems: [cartItems, setCartItems],
+  } = useAppContext();
+
+  // const kon = useAppContext(AppContextProvider);
+  // console.log("konteksti" + kon.tags);
   const url = `https://5m6exoj3o7.execute-api.eu-west-1.amazonaws.com/prod/items/${match.params.id}`;
 
   const handleSizeChange = (event) => {
@@ -63,6 +73,18 @@ const ProductPage = ({ match }) => {
     setQty(event.target.value);
   };
 
+  const addToCart = (el) => {
+    setCartItems([...cartItems, el]);
+  };
+
+  const removeFromCart = (el) => {
+    let hardCopy = [...cartItems];
+    hardCopy = hardCopy.filter((cartItem) => cartItem.itemId !== el.itemId);
+    setCartItems(hardCopy);
+  };
+
+  console.log("cart " + cartItems);
+
   useEffect(() => {
     console.log("useEffect has been run");
 
@@ -70,16 +92,16 @@ const ProductPage = ({ match }) => {
       try {
         const result = await axios(url);
         setProductItem(result.data);
-        console.log(result.data);
+        //console.log(result.data);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchProductItem();
-  }, [match.params.id, url, size, qty]);
+  }, [match.params.id, url, size, qty, cartItems]);
 
-  console.log(productItem.picture);
+  // console.log(productItem.picture);
 
   let images = [
     {
@@ -96,8 +118,8 @@ const ProductPage = ({ match }) => {
   ];
 
   let quantity = ["1", "2", "3", "4", "5"];
-  console.log(images);
-  console.log(productItem.availableSizes);
+  // console.log(images);
+  // console.log(productItem.availableSizes);
 
   return (
     <div className={classes.root}>
@@ -191,12 +213,12 @@ const ProductPage = ({ match }) => {
                 <div className={classes.heroButtons}>
                   <Grid
                     container
-                    spacing={3}
-                    justify="left"
-                    style={{ marginBottom: "10px" }}
+                    spacing={1}
+                    justify="center"
+                    style={{ marginBottom: "5px" }}
                   >
                     <Grid item>
-                      <Link
+                      {/* <Link
                         to={{
                           pathname: "/cart",
                           state: {
@@ -205,11 +227,16 @@ const ProductPage = ({ match }) => {
                             chosenQuantity: qty && qty,
                           },
                         }}
+                      > */}
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => addToCart(productItem)}
                       >
-                        <Button variant="contained" color="primary">
-                          Add to Cart
-                        </Button>
-                      </Link>
+                        Add to Cart ({cartItems.length})
+                      </Button>
+
+                      {/* </Link> */}
                     </Grid>
                     <Grid item>
                       <Link to="/">
@@ -218,6 +245,28 @@ const ProductPage = ({ match }) => {
                         </Button>
                       </Link>
                     </Grid>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => removeFromCart(productItem)}
+                      >
+                        Remove Item from Cart ({cartItems.length})
+                      </Button>
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    container
+                    spacing={1}
+                    justify="center"
+                    style={{ marginBottom: "5px" }}
+                  >
+                    {" "}
+                    <Link to="/cart">
+                      <Button variant="outlined" color="outlined">
+                        Go to Cart ({cartItems.length})
+                      </Button>
+                    </Link>
                   </Grid>
                 </div>
               </div>
