@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -7,14 +7,10 @@ import OrderSummaryItem from "./OrderSummaryItem";
 import ShoppingCartItem from "./ShoppingCartItem";
 import { useAppContext, AppContextProvider } from "../context";
 
-export default function ShoppingCart({ match, location }) {
-  console.log(match);
-  console.log(location);
+export default function ShoppingCart() {
 
   const pr = useAppContext(AppContextProvider);
-  console.log(pr.cartItems[0]);
-
-  const [items, setShoppingItems] = useState([pr.cartItems[0]]);
+  // console.log(pr.cartItems[0]);
 
   return (
     <React.Fragment>
@@ -36,6 +32,7 @@ export default function ShoppingCart({ match, location }) {
                     // size={location.state.chosenSize}
                     // quantity={location.state.chosenQuantity}
                     price={item.currentPrice}
+                    //pass remove from cart function as prop to item
                   />
                 ))}
               </Grid>
