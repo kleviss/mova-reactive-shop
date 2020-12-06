@@ -5,6 +5,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,11 +43,6 @@ export default function ShoppingCartItem({
         title="Live from space album cover"
       />
       <CardContent className={classes.content}>
-        <CardMedia
-          className={classes.cover}
-          image={image}
-          title="Live from space album cover"
-        />
         <Typography
           className={classes.title}
           color="textSecondary"
@@ -80,7 +77,7 @@ export default function ShoppingCartItem({
               {quantity}
             </Typography>
           </Grid>
-          <Grid item xs={9} sm={9} md={10} lg={10}>
+          <Grid item xs={8} sm={9} md={9} lg={10}>
             <Typography
               variant="body1"
               component="div"
@@ -89,13 +86,22 @@ export default function ShoppingCartItem({
               Price
             </Typography>
           </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={1}>
+          <Grid item xs={3} sm={2} md={3} lg={2}>
             <Typography variant="h6" component="div" color="secondary">
               €{price}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
+      <Grid item>
+        <IconButton
+          size="small"
+          aria-label="delete"
+          style={{ marginLeft: "-40px" }}
+        >
+          <DeleteIcon />
+        </IconButton>{" "}
+      </Grid>
     </Card>
   );
 }
