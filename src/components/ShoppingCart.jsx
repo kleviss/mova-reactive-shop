@@ -5,12 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import OrderSummaryItem from "./OrderSummaryItem";
 import ShoppingCartItem from "./ShoppingCartItem";
+import { useAppContext, AppContextProvider } from "../context";
 
 export default function ShoppingCart({ match, location }) {
   console.log(match);
   console.log(location);
 
-  const [items, setItems] = useState([location.state.item]);
+  const pr = useAppContext(AppContextProvider);
+  console.log(pr.cartItems[0]);
+
+  const [items, setShoppingItems] = useState([pr.cartItems[0]]);
 
   return (
     <React.Fragment>
@@ -24,13 +28,13 @@ export default function ShoppingCart({ match, location }) {
           <Grid item xs={12} sm={6} md={7} lg={7}>
             <Grid container>
               <Grid item xs>
-                {items.map((item) => (
+                {pr.cartItems[0].map((item) => (
                   <ShoppingCartItem
                     image={item.picture}
                     category={item.categoryId}
                     name={item.displayName}
-                    size={location.state.chosenSize}
-                    quantity={location.state.chosenQuantity}
+                    // size={location.state.chosenSize}
+                    // quantity={location.state.chosenQuantity}
                     price={item.currentPrice}
                   />
                 ))}
