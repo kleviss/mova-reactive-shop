@@ -23,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ShoppingCartItem({ image, category, name, size, quantity, price }) {
+export default function ShoppingCartItem({
+  image,
+  category,
+  name,
+  size,
+  quantity,
+  price,
+}) {
   const classes = useStyles();
 
   return (
@@ -44,7 +51,7 @@ export default function ShoppingCartItem({ image, category, name, size, quantity
           color="textSecondary"
           gutterBottom
         >
-          {category.charAt(0).toUpperCase() + category.slice(1)}
+          {category}
         </Typography>
         <Typography variant="div" component="h2">
           {name}
