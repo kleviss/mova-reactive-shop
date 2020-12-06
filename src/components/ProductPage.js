@@ -16,7 +16,7 @@ import Select from "@material-ui/core/Select";
 import PriceTag from "./PriceTag";
 import Typography from "@material-ui/core/Typography";
 // import ShoppingCart from "./ShoppingCart";
-import { useAppContext, AppContextProvider } from "../context";
+import { useAppContext } from "../context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
