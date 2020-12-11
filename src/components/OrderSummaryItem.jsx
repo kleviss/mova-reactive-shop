@@ -33,7 +33,7 @@ export default function OrderSummaryItem() {
 
   // eslint-disable-next-line array-callback-return
   productsToBuy.cartItems[0].map((pr) => {
-    sum += pr.originalPrice;
+    sum += pr.currentPrice;
   });
 
   return (
