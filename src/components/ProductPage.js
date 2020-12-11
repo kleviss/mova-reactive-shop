@@ -4,7 +4,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
@@ -15,36 +14,9 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import PriceTag from "./PriceTag";
 import Typography from "@material-ui/core/Typography";
-// import ShoppingCart from "./ShoppingCart";
+import useStyles from '../styles/productPageStyle';
 import { useAppContext } from "../context";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "left",
-    color: theme.palette.text.secondary,
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  availableSizes: {
-    display: "flex",
-    justifyContents: "space-around",
-  },
-  chipItem: {
-    marginRight: "1px",
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: "98%",
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
+// import ShoppingCart from "./ShoppingCart";
 
 const ProductPage = ({ match }) => {
   const classes = useStyles();
