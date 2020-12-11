@@ -5,8 +5,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import IconButton from "@material-ui/core/IconButton";
+// import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +48,7 @@ export default function ShoppingCartItem({
           color="textSecondary"
           gutterBottom
         >
-          {category}
+          {category.charAt(0).toUpperCase() + category.slice(1)}
         </Typography>
         <Typography variant="div" component="h2">
           {name}
@@ -93,7 +93,8 @@ export default function ShoppingCartItem({
           </Grid>
         </Grid>
       </CardContent>
-      <Grid item>
+      {/*Delete from cart button currently not working */}
+      {/* <Grid item>
         <IconButton
           size="small"
           aria-label="delete"
@@ -101,7 +102,7 @@ export default function ShoppingCartItem({
         >
           <DeleteIcon />
         </IconButton>{" "}
-      </Grid>
+      </Grid> */}
     </Card>
   );
 }
